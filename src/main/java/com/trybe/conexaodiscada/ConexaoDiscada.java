@@ -13,7 +13,25 @@ public class ConexaoDiscada {
    *
    */
   public static void main(String[] args) {
-    // Seu código aqui
+    boolean hasConnect;
+    int attempts = 1;
+
+    do {
+      StringBuilder stringBuilder = new StringBuilder();
+      String phrase = stringBuilder.append("Tentando conectar pela ").append(attempts)
+          .append(" vez.").toString();
+
+      System.out.println(phrase);
+      hasConnect = conectou();
+      attempts++;
+
+      if (!hasConnect) {
+        System.out.println("Conexão recusada.");
+        continue;
+      }
+
+      System.out.println("Conexão efetuada com sucesso.");
+    } while (!hasConnect && attempts <= 3);
   }
 
   // Chame esta função escrevendo `conectou()`
